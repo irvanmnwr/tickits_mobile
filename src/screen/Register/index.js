@@ -43,7 +43,10 @@ function Register(props) {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Image source={require('../../assets/Tickitz_logo.png')} />
+        <Image
+          style={styles.image}
+          source={require('../../assets/Tickitz_logo.png')}
+        />
         <View style={styles.containerTextTop}>
           <Text style={styles.textLogin}>Sign Up</Text>
           <Text style={styles.paragrafLogin}>Fill your additional details</Text>

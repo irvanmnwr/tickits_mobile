@@ -9,6 +9,10 @@ export default StyleSheet.create({
     // alignItems: 'center',
     // justifyContent: 'center',
   },
+  image: {
+    width: 200,
+    height: 50,
+  },
   containerTextTop: {
     marginVertical: 10,
     paddingTop: 45,

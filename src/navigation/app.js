@@ -7,16 +7,28 @@ const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 import Home from '../screen/Home';
+import Detail from '../screen/Detail';
+import Order from '../screen/Order';
 
 import DrawerContent from '../components/DrawerContent';
 import Header from '../components/Header';
 
 function HomeNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         component={Home}
         name="Home"
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        component={Detail}
+        name="Detail"
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        component={Order}
+        name="Order"
         options={{headerShown: false}}
       />
     </Stack.Navigator>

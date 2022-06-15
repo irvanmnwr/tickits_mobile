@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   },
   splashImage: {
     width: 200,
+    height: 50,
   },
 });
 

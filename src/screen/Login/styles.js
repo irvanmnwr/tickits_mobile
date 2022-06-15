@@ -13,6 +13,10 @@ export default StyleSheet.create({
     marginVertical: 10,
     paddingTop: 45,
   },
+  image: {
+    width: 200,
+    height: 50,
+  },
   textLogin: {
     fontSize: 32,
     color: 'black',

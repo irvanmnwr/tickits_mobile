@@ -3,13 +3,13 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 export default function Card(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <View style={styles.card}>
       <Image style={styles.cardImage} source={require('../assets/film1.png')} />
       <Text style={styles.cardTitle}>Movie Title</Text>
       <Text style={styles.cardGenre}>Movie genre</Text>
-      <TouchableOpacity style={styles.cardButton}>
+      <TouchableOpacity style={styles.cardButton} onPress={props.handleDetail}>
         <Text style={styles.buttonText}>Details</Text>
       </TouchableOpacity>
     </View>

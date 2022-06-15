@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -11,7 +11,10 @@ export default function Header(props) {
   return (
     <View style={styles.header}>
       <View>
-        <Image source={require('../assets/Tickitz_logo.png')} />
+        <Image
+          style={styles.splashImage}
+          source={require('../assets/Tickitz_logo.png')}
+        />
       </View>
       <TouchableOpacity onPress={openDrawer}>
         <Icon color={'black'} size={20} name="menu" />
@@ -27,5 +30,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
     paddingHorizontal: 20,
+  },
+  splashImage: {
+    width: 160,
+    height: 40,
   },
 });

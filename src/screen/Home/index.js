@@ -11,7 +11,10 @@ import styles from './styles';
 import Card from '../../components/Card';
 import Footer from '../../components/Footer';
 
-function HomeScreen() {
+function HomeScreen(props) {
+  const handleDetail = () => {
+    props.navigation.navigate('Detail');
+  };
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -35,10 +38,10 @@ function HomeScreen() {
         </View>
         <View style={styles.cardContainer}>
           <ScrollView horizontal={true}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <Card handleDetail={handleDetail} />
+            <Card handleDetail={handleDetail} />
+            <Card handleDetail={handleDetail} />
+            <Card handleDetail={handleDetail} />
           </ScrollView>
         </View>
       </View>
@@ -75,10 +78,10 @@ function HomeScreen() {
         </View>
         <View style={styles.cardContainer}>
           <ScrollView horizontal={true}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <Card handleDetail={handleDetail} />
+            <Card handleDetail={handleDetail} />
+            <Card handleDetail={handleDetail} />
+            <Card handleDetail={handleDetail} />
           </ScrollView>
         </View>
       </View>

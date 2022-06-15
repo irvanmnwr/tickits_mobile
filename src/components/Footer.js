@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   },
   footerLogo: {
     width: 200,
+    height: 50,
     marginVertical: 25,
   },
   footerText: {
@@ -80,11 +81,12 @@ const styles = StyleSheet.create({
   },
   footerImageList: {
     flexDirection: 'row',
+    alignItems: 'flex-end',
   },
   footerImage: {
     resizeMode: 'stretch',
     flex: 1,
-    marginRight: 10,
+    paddingLeft: 40,
   },
   footerLogos: {
     marginRight: 40,
