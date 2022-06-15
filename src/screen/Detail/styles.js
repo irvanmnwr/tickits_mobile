@@ -35,8 +35,9 @@ export default StyleSheet.create({
   },
   detailContainer: {
     paddingHorizontal: 20,
+    paddingVertical: 20,
     flexDirection: 'row',
-    height: 100,
+    height: 'auto',
     backgroundColor: 'white',
   },
   detailCard: {

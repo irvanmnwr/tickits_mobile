@@ -9,6 +9,7 @@ const Drawer = createDrawerNavigator();
 import Home from '../screen/Home';
 import Detail from '../screen/Detail';
 import Order from '../screen/Order';
+import Payment from '../screen/Payment';
 
 import DrawerContent from '../components/DrawerContent';
 import Header from '../components/Header';
@@ -29,6 +30,11 @@ function HomeNavigator() {
       <Stack.Screen
         component={Order}
         name="Order"
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        component={Payment}
+        name="Payment"
         options={{headerShown: false}}
       />
     </Stack.Navigator>
