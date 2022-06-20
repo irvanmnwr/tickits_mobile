@@ -1,0 +1,106 @@
+import {StyleSheet} from 'react-native';
+
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingBottom: 40,
+    backgroundColor: '#D6D8E7',
+    height: 'auto',
+  },
+  avatar: {
+    width: 150,
+    height: 150,
+    borderRadius: 150,
+    backgroundColor: 'gray',
+  },
+  containerSeat: {
+    backgroundColor: 'white',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    padding: 10,
+  },
+  cardTitle: {
+    marginVertical: 20,
+    fontSize: 25,
+    color: 'black',
+    fontWeight: 'bold',
+  },
+  price: {
+    marginTop: 20,
+    flex: 1,
+    flexDirection: 'row',
+  },
+  priceTag: {
+    flex: 1,
+    alignItems: 'flex-start',
+  },
+  priceTag2: {
+    flex: 1,
+    alignItems: 'flex-end',
+    marginRight: 20,
+  },
+  priceText: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  priceText2: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#8692A6',
+  },
+  scheduleCard: {
+    backgroundColor: 'white',
+    width: '100%',
+    marginVertical: 20,
+    borderRadius: 10,
+    padding: 20,
+    paddingBottom: 40,
+    borderWidth: 1,
+    borderColor: '#DEDEDE',
+  },
+  scheduleCard2: {
+    backgroundColor: 'white',
+    width: '100%',
+    marginVertical: 20,
+    borderRadius: 10,
+    padding: 20,
+    paddingBottom: 40,
+    borderWidth: 1,
+    borderColor: '#DEDEDE',
+    alignItems: 'center',
+  },
+  detailLeft: {
+    fontSize: 18,
+    color: '#8692A6',
+    fontWeight: 'bold',
+    marginVertical: 10,
+  },
+  detailLeft2: {
+    fontSize: 18,
+    color: '#8692A6',
+    fontWeight: 'bold',
+  },
+  input: {
+    borderColor: '#8692A6',
+    fontSize: 16,
+    borderWidth: 2,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    color: '#8692A6',
+  },
+  cardButton: {
+    marginTop: 20,
+    padding: 10,
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: '#5F2EEA',
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+  },
+});

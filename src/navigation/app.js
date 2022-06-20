@@ -10,6 +10,8 @@ import Home from '../screen/Home';
 import Detail from '../screen/Detail';
 import Order from '../screen/Order';
 import Payment from '../screen/Payment';
+import Profile from '../screen/Profile';
+import History from '../screen/History';
 
 import DrawerContent from '../components/DrawerContent';
 import Header from '../components/Header';
@@ -44,8 +46,13 @@ function ProfileNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        // component={Profile}
+        component={Profile}
         name="Profile"
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        component={History}
+        name="History"
         options={{headerShown: false}}
       />
     </Stack.Navigator>

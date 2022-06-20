@@ -2,20 +2,18 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    height: 750,
+    height: 700,
     padding: 20,
-    paddingTop: 50,
     backgroundColor: 'white',
   },
   container2: {
     height: 650,
     padding: 20,
-    paddingTop: 50,
     backgroundColor: 'white',
   },
   containerTop: {
     marginVertical: 10,
-    paddingTop: 65,
+    paddingTop: 45,
   },
   textHome: {
     fontSize: 48,
@@ -34,9 +32,8 @@ export default StyleSheet.create({
     resizeMode: 'stretch',
   },
   containerMain: {
-    height: 650,
+    height: 610,
     padding: 20,
-    paddingTop: 50,
     backgroundColor: '#D6D8E7',
   },
   textContainer: {
@@ -84,7 +81,7 @@ export default StyleSheet.create({
     fontSize: 16,
   },
   bottomContainer: {
-    height: 420,
+    height: 400,
     padding: 40,
     backgroundColor: 'white',
     alignItems: 'center',

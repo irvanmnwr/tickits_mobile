@@ -22,9 +22,7 @@ function Register(props) {
     try {
       console.log(form);
       const result = await axios.post('auth/register', form);
-      props.navigation.navigate('AppScreen', {
-        screen: 'Home',
-      });
+      props.navigation.navigate('Login');
       // eslint-disable-next-line no-alert
       alert(result.data.msg);
     } catch (error) {

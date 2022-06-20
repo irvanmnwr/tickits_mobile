@@ -1,16 +1,18 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import {useSelector} from 'react-redux';
 
 import Icon from 'react-native-vector-icons/Feather';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function DrawerContent(props) {
+  const dataUser = useSelector(state => state.user.data.data.data[0]);
   const handleLogout = async () => {
     try {
       alert('Logout');
@@ -24,10 +26,13 @@ function DrawerContent(props) {
     <View style={styles.container}>
       <DrawerContentScrollView {...props}>
         <View style={styles.containerProfile}>
-          <View style={styles.avatar} />
+          <Image
+            style={styles.avatar}
+            source={require('../assets/top-wrapper.png')}
+          />
           <View style={styles.biodata}>
-            <Text style={styles.title}>Anonymous</Text>
-            <Text style={styles.caption}>@bagustea</Text>
+            <Text style={styles.title}>{dataUser.firstName}</Text>
+            <Text style={styles.caption}>{dataUser.email}</Text>
           </View>
         </View>
         <DrawerItemList {...props} />

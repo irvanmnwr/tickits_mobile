@@ -1,9 +1,11 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// import {URL_BACKEND} from 'react-native-dotenv';
 
+// console.log({URL_BACKEND});
 const axiosApiIntances = axios.create({
   // baseURL: 'http://192.168.100.1:3001', // ip:portbackend
-  baseURL: 'https://project-tickitz.herokuapp.com/',
+  baseURL: 'https://project-tickets-online.herokuapp.com/',
 });
 
 // Add a request interceptor

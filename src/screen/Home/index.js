@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect, useState} from 'react';
+import axios from '../../utils/axios';
 import {
   View,
   Text,
@@ -8,13 +10,74 @@ import {
   TextInput,
 } from 'react-native';
 import styles from './styles';
+import {useSelector, useDispatch} from 'react-redux';
 import Card from '../../components/Card';
 import Footer from '../../components/Footer';
+import {getDataMovie} from '../../stores/actions/movie';
 
 function HomeScreen(props) {
-  const handleDetail = () => {
-    props.navigation.navigate('Detail');
+  const dispatch = useDispatch();
+  const limit = 8;
+  const page = 1;
+  const [releaseDate, setReleaseDate] = useState('4');
+  const [movieNow, setMovieNow] = useState([]);
+  const month = [
+    {number: 1, title: 'Januari'},
+    {number: 2, title: 'Februari'},
+    {number: 3, title: 'Maret'},
+    {number: 4, title: 'April'},
+    {number: 5, title: 'Mei'},
+    {number: 6, title: 'June'},
+    {number: 7, title: 'July'},
+    {number: 8, title: 'August'},
+    {number: 9, title: 'September'},
+    {number: 10, title: 'October'},
+    {number: 11, title: 'November'},
+    {number: 12, title: 'Desember'},
+  ];
+  const handleDetail = data => {
+    console.log(data);
+    props.navigation.navigate('Detail', {movieId: data.id});
   };
+  useEffect(() => {
+    console.log(releaseDate);
+    getdataMovie();
+  }, [releaseDate]);
+
+  useEffect(() => {
+    getdataMovieNow();
+    getdataMovie();
+  }, []);
+
+  const handleSortMonth = item => {
+    setReleaseDate(item.number);
+  };
+
+  const getdataMovieNow = async () => {
+    const date = new Date();
+    const months = date.getMonth();
+    const dateNow = months;
+    console.log(dateNow);
+    try {
+      const resultMovie = await axios.get(
+        `movie?page=${page}&limit=${limit}&releaseDate=${dateNow}`,
+      );
+      setMovieNow(resultMovie.data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  const getdataMovie = async () => {
+    try {
+      // PANGGIL ACTION
+      await dispatch(getDataMovie(page, limit, releaseDate));
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  const movie = useSelector(state => state.movie);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -38,10 +101,21 @@ function HomeScreen(props) {
         </View>
         <View style={styles.cardContainer}>
           <ScrollView horizontal={true}>
-            <Card handleDetail={handleDetail} />
-            <Card handleDetail={handleDetail} />
-            <Card handleDetail={handleDetail} />
-            <Card handleDetail={handleDetail} />
+            {movieNow.data ? (
+              movieNow.isLoading ? (
+                <Text style={styles.buttonText}>loading</Text>
+              ) : (
+                movieNow.data.map(item => (
+                  <Card
+                    handleDetail={handleDetail}
+                    dataMovie={item}
+                    key={item.id}
+                  />
+                ))
+              )
+            ) : (
+              <Text style={styles.paragrafHome}>dataKosong</Text>
+            )}
           </ScrollView>
         </View>
       </View>
@@ -56,32 +130,33 @@ function HomeScreen(props) {
         </View>
         <View>
           <ScrollView horizontal={true}>
-            <TouchableOpacity style={styles.cardButton}>
-              <Text style={styles.buttonText}>January</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.cardButton}>
-              <Text style={styles.buttonText}>February</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.cardButton}>
-              <Text style={styles.buttonText}>March</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.cardButton}>
-              <Text style={styles.buttonText}>April</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.cardButton}>
-              <Text style={styles.buttonText}>May</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.cardButton}>
-              <Text style={styles.buttonText}>June</Text>
-            </TouchableOpacity>
+            {month.map(item => (
+              <TouchableOpacity
+                style={styles.cardButton}
+                onPress={() => handleSortMonth(item)}
+                key={item.number}>
+                <Text style={styles.buttonText}>{item.title}</Text>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         </View>
         <View style={styles.cardContainer}>
           <ScrollView horizontal={true}>
-            <Card handleDetail={handleDetail} />
-            <Card handleDetail={handleDetail} />
-            <Card handleDetail={handleDetail} />
-            <Card handleDetail={handleDetail} />
+            {movie.data ? (
+              movie.isLoading ? (
+                <Text style={styles.buttonText}>loading</Text>
+              ) : (
+                movie.data.map(item => (
+                  <Card
+                    handleDetail={handleDetail}
+                    dataMovie={item}
+                    key={item.id}
+                  />
+                ))
+              )
+            ) : (
+              <Text style={styles.paragrafHome}>dataKosong</Text>
+            )}
           </ScrollView>
         </View>
       </View>

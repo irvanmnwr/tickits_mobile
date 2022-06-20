@@ -3,8 +3,11 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput, Image} from 'react-native';
 import axios from '../../utils/axios';
 import styles from './styles';
+import {useDispatch} from 'react-redux';
+import {getUserById} from '../../stores/actions/user';
 
 function Login(props) {
+  const dispatch = useDispatch();
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -16,6 +19,7 @@ function Login(props) {
       await AsyncStorage.setItem('id', result.data.data.id);
       await AsyncStorage.setItem('token', result.data.data.token);
       await AsyncStorage.setItem('refreshToken', result.data.data.refreshToken);
+      await dispatch(getUserById(result.data.data.id));
       props.navigation.navigate('AppScreen', {
         screen: 'Home',
       });

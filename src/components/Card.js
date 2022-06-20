@@ -1,20 +1,40 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, AppRegistry} from 'react-native';
 import {StyleSheet} from 'react-native';
+import {CLOUDINARY} from '@env';
 
 export default function Card(props) {
-  // console.log(props);
+  const imageUrl = CLOUDINARY + props.dataMovie.image;
+  const image_URL = {uri: imageUrl};
+  console.log(image_URL);
   return (
     <View style={styles.card}>
-      <Image style={styles.cardImage} source={require('../assets/film1.png')} />
-      <Text style={styles.cardTitle}>Movie Title</Text>
-      <Text style={styles.cardGenre}>Movie genre</Text>
-      <TouchableOpacity style={styles.cardButton} onPress={props.handleDetail}>
+      <Image
+        // source={{
+        //   uri: 'https://reactnative-examples.com/wp-content/uploads/2021/10/white-lily.jpg',
+        // }}
+        style={styles.cardImage}
+        // source={{
+        //   image_URL,
+        // }}
+        source={require('../assets/film1.png')}
+      />
+      <Text numberOfLines={1} style={styles.cardTitle}>
+        {props.dataMovie.name}
+      </Text>
+      <Text numberOfLines={1} style={styles.cardGenre}>
+        {props.dataMovie.category}
+      </Text>
+      <TouchableOpacity
+        style={styles.cardButton}
+        onPress={() => props.handleDetail({id: props.dataMovie.id})}>
         <Text style={styles.buttonText}>Details</Text>
       </TouchableOpacity>
     </View>
   );
 }
+
+AppRegistry.registerComponent('Card', () => Card);
 
 const styles = StyleSheet.create({
   card: {
@@ -24,7 +44,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     borderRadius: 10,
     padding: 20,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     borderWidth: 1,
     borderColor: '#DEDEDE',
   },
@@ -33,12 +53,14 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
   },
   cardTitle: {
-    margin: 10,
-    fontSize: 25,
+    marginLeft: 8,
+    marginVertical: 10,
+    fontSize: 20,
     color: 'black',
     fontWeight: 'bold',
   },
   cardGenre: {
+    marginLeft: 10,
     fontSize: 18,
     color: '#8692A6',
   },
