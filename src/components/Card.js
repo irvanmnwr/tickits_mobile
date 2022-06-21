@@ -10,14 +10,14 @@ export default function Card(props) {
   return (
     <View style={styles.card}>
       <Image
-        // source={{
-        //   uri: 'https://reactnative-examples.com/wp-content/uploads/2021/10/white-lily.jpg',
-        // }}
+        source={{
+          uri: imageUrl,
+        }}
         style={styles.cardImage}
         // source={{
         //   image_URL,
         // }}
-        source={require('../assets/film1.png')}
+        // source={require('../assets/film1.png')}
       />
       <Text numberOfLines={1} style={styles.cardTitle}>
         {props.dataMovie.name}
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     width: 160,
-    resizeMode: 'stretch',
+    height: 300,
   },
   cardTitle: {
     marginLeft: 8,

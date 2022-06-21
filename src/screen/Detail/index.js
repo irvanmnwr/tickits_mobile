@@ -12,6 +12,7 @@ function DetailScreen(props) {
 
   useEffect(() => {
     getdataMovie();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getdataMovie = async () => {

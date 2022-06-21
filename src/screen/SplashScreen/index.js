@@ -12,12 +12,13 @@ function SplashScreen(props) {
   // console.log({URL_BACKEND});
   const checkToken = async () => {
     const token = await AsyncStorage.getItem('token');
+    console.log(token);
     setTimeout(() => {
-      // if (token) {
-      //   props.navigation.replace('AppScreen'); // sebelumnya props.navigation.navigate
-      // } else {
-      // }
-      props.navigation.replace('AuthScreen'); // sebelumnya props.navigation.navigate
+      if (token) {
+        props.navigation.replace('AppScreen'); // sebelumnya props.navigation.navigate
+      } else {
+        props.navigation.replace('AuthScreen'); // sebelumnya props.navigation.navigate
+      }
     }, 5000);
   };
 

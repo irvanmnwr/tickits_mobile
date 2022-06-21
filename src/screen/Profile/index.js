@@ -40,10 +40,16 @@ function Profile(props) {
 
   const handleChangePassword = async () => {
     try {
+      console.log(formPassword);
       const result = await dispatch(updatePassword(formPassword));
-      props.navigation.navigate('Profile');
+      setFormPassword({
+        oldPassword: '',
+        newPassword: '',
+        confirmPassword: '',
+      });
       // eslint-disable-next-line no-alert
-      alert(result.data.msg);
+      alert(result.action.payload.data.msg);
+      props.navigation.navigate('Profile');
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +70,7 @@ function Profile(props) {
       getdataUser();
       props.navigation.navigate('Profile');
       // eslint-disable-next-line no-alert
-      alert(result.data.msg);
+      alert(result.action.payload.data.msg);
     } catch (error) {
       console.log(error);
     }
