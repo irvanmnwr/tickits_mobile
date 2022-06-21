@@ -3,8 +3,6 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 export default function ScheduleCard(props) {
-  console.log(props.date);
-  console.log(props.dataSchedule);
   const [dataOrder, setDataOrder] = useState({
     scheduleId: props.dataSchedule.id,
     premiere: props.dataSchedule.premiere,

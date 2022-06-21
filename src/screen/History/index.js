@@ -1,27 +1,9 @@
 import React, {useState} from 'react';
-import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity, Image} from 'react-native';
 import styles from './styles';
 import Footer from '../../components/Footer';
-// Dropdown Picker
-import DropDownPicker from 'react-native-dropdown-picker';
-
-// Select Dropdown
-import SelectDropdown from 'react-native-select-dropdown';
-const countries = ['Egypt', 'Canada', 'Australia', 'Ireland'];
-
-// Date Picker
-import DatePicker from 'react-native-date-picker';
 
 function History(props) {
-  const [date, setDate] = useState(new Date());
-  const [openDate, setOpenDate] = useState(false);
-  // Dropdown Picker
-  const [openDropdown, setOpenDropdown] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Apple', value: 'apple'},
-    {label: 'Banana', value: 'banana'},
-  ]);
   const handleProfile = () => {
     props.navigation.navigate('Profile');
   };
@@ -38,50 +20,18 @@ function History(props) {
             </TouchableOpacity>
           </View>
         </View>
-        <DropDownPicker
-          open={openDropdown}
-          value={value}
-          items={items}
-          setOpen={setOpenDropdown}
-          setValue={setValue}
-          setItems={setItems}
-        />
-        {/* End Dropdown Picker */}
-
-        {/* Select Dropdown */}
-        <SelectDropdown
-          data={countries}
-          onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
-          }}
-          buttonTextAfterSelection={(selectedItem, index) => {
-            // text represented after item is selected
-            // if data array is an array of objects then return selectedItem.property to render after item is selected
-            return selectedItem;
-          }}
-          rowTextForSelection={(item, index) => {
-            // text represented for each item in dropdown
-            // if data array is an array of objects then return item.property to represent item in dropdown
-            return item;
-          }}
-        />
-        {/* Date Picker */}
-        <TouchableOpacity onPress={() => setOpenDate(true)}>
-          <Text>Pick Date</Text>
-        </TouchableOpacity>
-        <DatePicker
-          modal
-          open={openDate}
-          date={date}
-          onConfirm={datePick => {
-            setOpenDate(false);
-            setDate(datePick);
-          }}
-          onCancel={() => {
-            setOpenDate(false);
-          }}
-        />
-        {/* End Date Picker */}
+        <View style={styles.scheduleCard2}>
+          <Text style={styles.detailLeft2} />
+          <Image
+            style={styles.avatar}
+            source={require('../../assets/studio1.png')}
+          />
+          <Text style={styles.detailLeft2}>date$Time</Text>
+          <Text style={styles.cardTitle}>movie name</Text>
+          <TouchableOpacity style={styles.cardButton}>
+            <Text style={styles.buttonText}>Change Image</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <Footer />
     </ScrollView>

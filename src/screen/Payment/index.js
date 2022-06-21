@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axios from '../../utils/axios';
+import {WebView} from 'react-native-webview';
 import {
   View,
   Text,
@@ -11,6 +13,33 @@ import Footer from '../../components/Footer';
 
 function PaymentScreen(props) {
   const booking = props.route.params;
+  const [inputs, setInputs] = useState({
+    scheduleId: booking.scheduleId,
+    dateBooking: booking.dateBooking,
+    timeBooking: booking.timeBooking,
+    paymentMethod: 'midTrands',
+    totalPayment: booking.price * booking.seat.length,
+    seat: booking.seat,
+  });
+
+  const handlePayment = async () => {
+    try {
+      const resultPayment = await axios.post('booking/', inputs);
+      const URL = resultPayment.data.data.redirectUrl;
+      props.navigation.replace('Midtrands', {uri: URL});
+      // return (
+      //   <WebView
+      //     source={{
+      //       uri: resultPayment.data.data.redirectUrl,
+      //     }}
+      //     //   style={{marginTop: 20}}
+      //   />
+      // );
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -47,9 +76,15 @@ function PaymentScreen(props) {
             style={styles.input}
           />
         </View>
-        <TouchableOpacity style={styles.cardButton}>
+        <TouchableOpacity style={styles.cardButton} onPress={handlePayment}>
           <Text style={styles.buttonText}>Pay Your Order</Text>
         </TouchableOpacity>
+        <WebView
+          source={{
+            uri: 'https://youtube.com',
+          }}
+          //   style={{marginTop: 20}}
+        />
       </View>
       <Footer />
     </ScrollView>
