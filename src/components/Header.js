@@ -17,7 +17,7 @@ export default function Header(props) {
         />
       </View>
       <TouchableOpacity onPress={openDrawer}>
-        <Icon color={'black'} size={20} name="menu" />
+        <Icon color={'black'} size={35} name="menu" />
       </TouchableOpacity>
     </View>
   );

@@ -20,8 +20,8 @@ export default StyleSheet.create({
     borderColor: '#DEDEDE',
   },
   cardImage: {
-    // width: 200,
-    resizeMode: 'stretch',
+    width: 160,
+    height: 280,
   },
   cardTitle: {
     marginVertical: 10,
@@ -56,7 +56,8 @@ export default StyleSheet.create({
   },
   sinopsisContainer: {
     paddingHorizontal: 20,
-    height: 280,
+    height: 'auto',
+    paddingBottom: 20,
     backgroundColor: 'white',
   },
   sinopsisTitle: {
@@ -69,6 +70,20 @@ export default StyleSheet.create({
     fontSize: 16,
     color: '#8692A6',
     textAlign: 'justify',
+  },
+  cardButton: {
+    marginTop: 20,
+    padding: 15,
+    borderColor: 'black',
+    borderWidth: 1,
+    marginHorizontal: 30,
+    width: '80%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: 'black',
+    fontSize: 14,
   },
   scheduleContainer: {
     paddingHorizontal: 20,

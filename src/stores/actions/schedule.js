@@ -1,9 +1,9 @@
-import axios from "../../utils/axios";
+import axios from '../../utils/axios';
 
 export const getDataSchedule = (page, limit) => {
   return {
-    type: "GET_DATA_SCHEDULE",
-    payload: axios.get(`schedule/?page=${page}&limit=${limit}`)
+    type: 'GET_DATA_SCHEDULE',
+    payload: axios.get(`schedule/?page=${page}&limit=${limit}`),
   };
 };
 

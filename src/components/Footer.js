@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   },
   footerImage: {
     resizeMode: 'stretch',
+    marginHorizontal: 13,
     flex: 1,
     paddingLeft: 40,
   },

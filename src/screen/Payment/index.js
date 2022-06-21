@@ -10,6 +10,7 @@ import styles from './styles';
 import Footer from '../../components/Footer';
 
 function PaymentScreen(props) {
+  const booking = props.route.params;
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -19,7 +20,9 @@ function PaymentScreen(props) {
               <Text style={styles.priceText}>Total Payment</Text>
             </View>
             <View style={styles.priceTag2}>
-              <Text style={styles.priceText2}>Rp. 240.000</Text>
+              <Text style={styles.priceText2}>
+                {booking.price * booking.seat.length}
+              </Text>
             </View>
           </View>
         </View>

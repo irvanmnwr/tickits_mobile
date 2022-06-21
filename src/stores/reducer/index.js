@@ -8,6 +8,6 @@ import booking from './booking';
 export default combineReducers({
   movie,
   user,
-  // schedule,
-  // booking,
+  schedule,
+  booking,
 });

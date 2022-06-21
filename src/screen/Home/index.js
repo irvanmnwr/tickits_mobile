@@ -36,7 +36,6 @@ function HomeScreen(props) {
     {number: 12, title: 'Desember'},
   ];
   const handleDetail = data => {
-    console.log(data);
     props.navigation.navigate('Detail', {movieId: data.id});
   };
   useEffect(() => {
@@ -57,7 +56,6 @@ function HomeScreen(props) {
     const date = new Date();
     const months = date.getMonth();
     const dateNow = months;
-    console.log(dateNow);
     try {
       const resultMovie = await axios.get(
         `movie?page=${page}&limit=${limit}&releaseDate=${dateNow}`,

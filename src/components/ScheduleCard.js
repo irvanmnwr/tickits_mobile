@@ -1,31 +1,56 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 export default function ScheduleCard(props) {
-  console.log(props);
+  console.log(props.date);
+  console.log(props.dataSchedule);
+  const [dataOrder, setDataOrder] = useState({
+    scheduleId: props.dataSchedule.id,
+    premiere: props.dataSchedule.premiere,
+    dateBooking: props.date,
+    movieName: props.dataSchedule.name,
+    price: props.dataSchedule.price,
+  });
+
+  const changeDataBooking = data => {
+    setDataOrder({...dataOrder, ...data});
+  };
   return (
     <View style={styles.scheduleCard}>
-      <Image
-        style={styles.scheduleCardImage}
-        source={require('../assets/studio1.png')}
-      />
+      {props.dataSchedule.premiere === 'ebu.id' ? (
+        <Image
+          style={styles.scheduleCardImage}
+          source={require('../assets/studio1.png')}
+        />
+      ) : props.dataSchedule.premiere === 'primere' ? (
+        <Image
+          style={styles.scheduleCardImage}
+          source={require('../assets/studio2.png')}
+        />
+      ) : (
+        <Image
+          style={styles.scheduleCardImage}
+          source={require('../assets/studio3.png')}
+        />
+      )}
+
       <Text style={styles.scheduleGenre}>
-        Whatever street No.12, South Purwokerto
+        Whatever street No.12, {props.dataSchedule.location}
       </Text>
       <View style={styles.timeList}>
-        <TouchableOpacity style={styles.time}>
-          <Text style={styles.timeText}>08:00 AM</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.time}>
-          <Text style={styles.timeText}>08:30 AM</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.time}>
-          <Text style={styles.timeText}>09:00 AM</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.time}>
-          <Text style={styles.timeText}>09:30 AM</Text>
-        </TouchableOpacity>
+        {props.dataSchedule.time.split(',').map(itemTime => (
+          <TouchableOpacity
+            style={styles.time}
+            key={itemTime}
+            onPress={() =>
+              changeDataBooking({
+                timeBooking: itemTime,
+              })
+            }>
+            <Text style={styles.timeText}>{itemTime} WIB</Text>
+          </TouchableOpacity>
+        ))}
       </View>
       <View style={styles.timeList}>
         <TouchableOpacity style={styles.time}>
@@ -46,10 +71,12 @@ export default function ScheduleCard(props) {
           <Text style={styles.priceText}>Price</Text>
         </View>
         <View style={styles.priceTag2}>
-          <Text style={styles.priceText2}>Rp. 80.000</Text>
+          <Text style={styles.priceText2}>Rp. {props.dataSchedule.price}</Text>
         </View>
       </View>
-      <TouchableOpacity style={styles.cardButton} onPress={props.handleOrder}>
+      <TouchableOpacity
+        style={styles.cardButton}
+        onPress={() => props.handleOrder({dataOrder})}>
         <Text style={styles.buttonText}>Book Now</Text>
       </TouchableOpacity>
     </View>

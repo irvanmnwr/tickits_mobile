@@ -3,82 +3,82 @@ const initialState = {
   isError: false,
   data: [],
   pageInfo: {},
-  msg: ""
+  msg: '',
 };
 
 const movie = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_DATA_MOVIE_PENDING": {
+    case 'GET_DATA_MOVIE_PENDING': {
       return {
         ...state,
         isLoading: true,
-        isError: false
+        isError: false,
       };
     }
-    case "GET_DATA_MOVIE_FULFILLED": {
+    case 'GET_DATA_MOVIE_FULFILLED': {
       return {
         ...state,
         isLoading: false,
         isError: false,
         data: action.payload.data.data,
         pageInfo: action.payload.data.pagination,
-        msg: action.payload.data.msg
+        msg: action.payload.data.msg,
       };
     }
-    case "GET_DATA_MOVIE_REJECTED": {
+    case 'GET_DATA_MOVIE_REJECTED': {
       return {
         ...state,
         isLoading: false,
         isError: true,
         data: [],
         pageInfo: {},
-        msg: action.payload.response.data.msg
+        msg: action.payload.response.data.msg,
       };
     }
-    case "POST_MOVIE_PENDING": {
+    case 'POST_MOVIE_PENDING': {
       return {
         ...state,
         isLoading: true,
-        isError: false
+        isError: false,
       };
     }
-    case "POST_MOVIE_FULFILLED": {
+    case 'POST_MOVIE_FULFILLED': {
       return {
         ...state,
         isLoading: false,
         isError: false,
-        msg: action.payload.data.msg
+        msg: action.payload.data.msg,
       };
     }
-    case "POST_MOVIE_REJECTED": {
+    case 'POST_MOVIE_REJECTED': {
       return {
         ...state,
         isLoading: true,
         isError: false,
-        msg: action.payload.response.data.msg
+        msg: action.payload.response.data.msg,
       };
     }
-    case "UPDATE_MOVIE_PENDING": {
+    case 'UPDATE_MOVIE_PENDING': {
       return {
         ...state,
         isLoading: true,
-        isError: false
+        isError: false,
       };
     }
-    case "UPDATE_MOVIE_FULFILLED": {
+    case 'UPDATE_MOVIE_FULFILLED': {
       return {
         ...state,
         isLoading: false,
         isError: false,
-        msg: action.payload.data.msg
+        msg: action.payload.data.msg,
       };
     }
-    case "UPDATE_MOVIE_REJECTED": {
+    case 'UPDATE_MOVIE_REJECTED': {
       return {
         ...state,
         isLoading: true,
         isError: false,
-        msg: action.payload.response.data.msg
+        msg: action.payload.response.data.msg,
       };
     }
     default: {

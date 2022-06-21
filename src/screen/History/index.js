@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import Footer from '../../components/Footer';
 // Dropdown Picker

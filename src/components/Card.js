@@ -5,8 +5,6 @@ import {CLOUDINARY} from '@env';
 
 export default function Card(props) {
   const imageUrl = CLOUDINARY + props.dataMovie.image;
-  const image_URL = {uri: imageUrl};
-  console.log(image_URL);
   return (
     <View style={styles.card}>
       <Image

@@ -1,8 +1,8 @@
-import axios from "../../utils/axios";
+import axios from '../../utils/axios';
 
-export const getDataBooking = (id) => {
+export const getDataBooking = id => {
   return {
-    type: "GET_DATA_BOOKING",
-    payload: axios.get(`booking/bookingByUser/${id}`)
+    type: 'GET_DATA_BOOKING',
+    payload: axios.get(`booking/bookingByUser/${id}`),
   };
 };
