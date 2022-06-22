@@ -90,11 +90,23 @@ function OrderScreen(props) {
         </View>
         <Text style={styles.cardTitle}>Order Info</Text>
         <View style={styles.scheduleCard}>
-          <Image
-            style={styles.scheduleCardImage}
-            source={require('../../assets/studio1.png')}
-          />
-          <Text style={styles.cinemaName}>{dataOrder.primiere} Cinema</Text>
+          {dataOrder.premiere === 'ebu.Id' ? (
+            <Image
+              style={styles.scheduleCardImage}
+              source={require('../../assets/studio1.png')}
+            />
+          ) : dataOrder.premiere === 'CineOne' ? (
+            <Image
+              style={styles.scheduleCardImage}
+              source={require('../../assets/studio2.png')}
+            />
+          ) : (
+            <Image
+              style={styles.scheduleCardImage}
+              source={require('../../assets/studio3.png')}
+            />
+          )}
+          <Text style={styles.cinemaName}> Cinema</Text>
           <Text style={styles.movieTitle}>{dataOrder.movieName}</Text>
           <View style={styles.detailCard}>
             <View style={styles.detail}>

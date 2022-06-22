@@ -24,10 +24,11 @@ function DetailScreen(props) {
   const [openDate, setOpenDate] = useState(false);
   // Dropdown Picker
   const [openDropdown, setOpenDropdown] = useState(false);
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState('');
   const [items, setItems] = useState([
-    {label: 'Apple', value: 'apple'},
-    {label: 'Banana', value: 'banana'},
+    {label: 'view All', value: ''},
+    {label: 'Bandung', value: 'Bandung'},
+    {label: 'Jakarta', value: 'Jakarta'},
   ]);
 
   useEffect(() => {
@@ -52,8 +53,10 @@ function DetailScreen(props) {
   };
 
   useEffect(() => {
+    console.log(value);
     getdataSchedule();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   const getdataSchedule = async () => {
     try {
@@ -62,7 +65,9 @@ function DetailScreen(props) {
       //   console.log(limit);
       //   console.log(page);
       // Proses
-      const resultSchedule = await axios.get('schedule/?limit=12');
+      const resultSchedule = await axios.get(
+        `schedule/?limit=12&location=${value}`,
+      );
       // Output
       setSchedule(resultSchedule.data.data);
     } catch (error) {
@@ -70,11 +75,12 @@ function DetailScreen(props) {
     }
   };
 
-  console.log(value);
-
   const handleOrder = dataOrder => {
     props.navigation.navigate('Order', {dataOrder: dataOrder});
   };
+
+  const [time, setTime] = useState('');
+  const [scheduleTime, setScheduleTime] = useState('');
 
   const imageUrl = CLOUDINARY + data.image;
   return (
@@ -150,31 +156,16 @@ function DetailScreen(props) {
           setItems={setItems}
         />
         {/* End Dropdown Picker */}
-
-        {/* Select Dropdown */}
-        {/* <SelectDropdown
-          style={styles.buttonText}
-          data={countries}
-          onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
-          }}
-          buttonTextAfterSelection={(selectedItem, index) => {
-            // text represented after item is selected
-            // if data array is an array of objects then return selectedItem.property to render after item is selected
-            return selectedItem;
-          }}
-          rowTextForSelection={(item, index) => {
-            // text represented for each item in dropdown
-            // if data array is an array of objects then return item.property to represent item in dropdown
-            return item;
-          }}
-        /> */}
         {schedule.map(item =>
           data.name === item.name ? (
             <ScheduleCard
               handleOrder={handleOrder}
               dataSchedule={item}
               date={date.toISOString().split('T')[0]}
+              setTime={setTime}
+              setSchedule={setScheduleTime}
+              schedule={scheduleTime}
+              time={time}
               key={item.id}
             />
           ) : null,

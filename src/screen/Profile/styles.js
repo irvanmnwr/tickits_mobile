@@ -20,6 +20,13 @@ export default StyleSheet.create({
     borderBottomRightRadius: 10,
     padding: 10,
   },
+  buttonDisable: {
+    marginVertical: 20,
+    padding: 15,
+    alignItems: 'center',
+    backgroundColor: '#8692A6',
+    borderRadius: 10,
+  },
   cardTitle: {
     marginVertical: 20,
     fontSize: 25,
@@ -92,7 +99,7 @@ export default StyleSheet.create({
   },
   cardButton: {
     marginTop: 20,
-    padding: 10,
+    padding: 15,
     width: '100%',
     alignItems: 'center',
     backgroundColor: '#5F2EEA',

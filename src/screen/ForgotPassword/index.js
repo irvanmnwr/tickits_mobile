@@ -42,8 +42,9 @@ function ForgotPassword(props) {
           onChangeText={text => handleChangeForm(text, 'email')}
         />
         <TouchableOpacity
-          style={styles.buttonPrimary}
-          onPress={handleForgotPassword}>
+          style={!form.email ? styles.buttonDisable : styles.buttonPrimary}
+          onPress={handleForgotPassword}
+          disabled={!form.email ? true : false}>
           <Text style={styles.buttonText}>Send</Text>
         </TouchableOpacity>
       </View>

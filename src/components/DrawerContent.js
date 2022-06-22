@@ -5,6 +5,7 @@ import {
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import {CLOUDINARY} from '@env';
 import {useSelector} from 'react-redux';
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -22,13 +23,16 @@ function DrawerContent(props) {
       });
     } catch (error) {}
   };
+  const imageUrl = CLOUDINARY + dataUser.image;
   return (
     <View style={styles.container}>
       <DrawerContentScrollView {...props}>
         <View style={styles.containerProfile}>
           <Image
             style={styles.avatar}
-            source={require('../assets/top-wrapper.png')}
+            source={
+              !dataUser.image ? require('../assets/user.png') : {uri: imageUrl}
+            }
           />
           <View style={styles.biodata}>
             <Text style={styles.title}>{dataUser.firstName}</Text>

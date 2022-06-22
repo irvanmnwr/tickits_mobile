@@ -15,6 +15,7 @@ import {
   getUserById,
   updatePassword,
 } from '../../stores/actions/user';
+import {CLOUDINARY} from '@env';
 
 function Profile(props) {
   const dispatch = useDispatch();
@@ -88,7 +89,8 @@ function Profile(props) {
     setFormProfile({...formProfile, [name]: text});
   };
 
-  console.log(dataUser);
+  const imageUrl = CLOUDINARY + dataUser.image;
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -106,7 +108,11 @@ function Profile(props) {
           <Text style={styles.detailLeft} />
           <Image
             style={styles.avatar}
-            source={require('../../assets/top-wrapper.png')}
+            source={
+              !dataUser.image
+                ? require('../../assets/user.png')
+                : {uri: imageUrl}
+            }
           />
           <Text style={styles.cardTitle}>
             {dataUser.firstName} {dataUser.lastName}
@@ -171,7 +177,24 @@ function Profile(props) {
           />
         </View>
         <TouchableOpacity
-          style={styles.cardButton}
+          style={
+            !formPassword.oldPassword
+              ? styles.buttonDisable
+              : !formPassword.newPassword
+              ? styles.buttonDisable
+              : !formPassword.confirmPassword
+              ? styles.buttonDisable
+              : styles.cardButton
+          }
+          disabled={
+            !formPassword.oldPassword
+              ? true
+              : !formPassword.newPassword
+              ? true
+              : !formPassword.confirmPassword
+              ? true
+              : false
+          }
           onPress={handleChangePassword}>
           <Text style={styles.buttonText}>Update Changes</Text>
         </TouchableOpacity>

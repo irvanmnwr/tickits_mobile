@@ -18,6 +18,7 @@ function Register(props) {
     email: '',
     password: '',
   });
+
   const handleRegister = async () => {
     try {
       console.log(form);
@@ -82,9 +83,35 @@ function Register(props) {
             style={styles.input}
             onChangeText={text => handleChangeForm(text, 'password')}
           />
+
           <TouchableOpacity
-            style={styles.buttonPrimary}
-            onPress={handleRegister}>
+            style={
+              !form.email
+                ? styles.buttonDisable
+                : !form.password
+                ? styles.buttonDisable
+                : !form.noTelp
+                ? styles.buttonDisable
+                : !form.lastName
+                ? styles.buttonDisable
+                : !form.firstName
+                ? styles.buttonDisable
+                : styles.buttonPrimary
+            }
+            onPress={handleRegister}
+            disabled={
+              !form.email
+                ? true
+                : !form.password
+                ? true
+                : !form.noTelp
+                ? true
+                : !form.lastName
+                ? true
+                : !form.firstName
+                ? true
+                : false
+            }>
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>
           <View style={styles.containerTextBottom}>

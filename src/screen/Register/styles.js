@@ -13,6 +13,13 @@ export default StyleSheet.create({
     width: 200,
     height: 50,
   },
+  buttonDisable: {
+    marginVertical: 20,
+    padding: 15,
+    alignItems: 'center',
+    backgroundColor: '#8692A6',
+    borderRadius: 10,
+  },
   containerTextTop: {
     marginVertical: 10,
     paddingTop: 45,

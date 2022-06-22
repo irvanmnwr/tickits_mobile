@@ -13,15 +13,18 @@ export default function ScheduleCard(props) {
 
   const changeDataBooking = data => {
     setDataOrder({...dataOrder, ...data});
+    props.setTime(data.timeBooking);
+    props.setSchedule(dataOrder.scheduleId);
   };
+
   return (
     <View style={styles.scheduleCard}>
-      {props.dataSchedule.premiere === 'ebu.id' ? (
+      {props.dataSchedule.premiere === 'ebu.Id' ? (
         <Image
           style={styles.scheduleCardImage}
           source={require('../assets/studio1.png')}
         />
-      ) : props.dataSchedule.premiere === 'primere' ? (
+      ) : props.dataSchedule.premiere === 'CineOne' ? (
         <Image
           style={styles.scheduleCardImage}
           source={require('../assets/studio2.png')}
@@ -34,7 +37,7 @@ export default function ScheduleCard(props) {
       )}
 
       <Text style={styles.scheduleGenre}>
-        Whatever street No.12, {props.dataSchedule.location}
+        Whatever street No.12, {props.dataSchedule.location}{' '}
       </Text>
       <View style={styles.timeList}>
         {props.dataSchedule.time.split(',').map(itemTime => (
@@ -46,12 +49,20 @@ export default function ScheduleCard(props) {
                 timeBooking: itemTime,
               })
             }>
-            <Text style={styles.timeText}>{itemTime} WIB</Text>
+            {props.dataSchedule.id === props.schedule ? (
+              itemTime === props.time ? (
+                <Text style={styles.timeTextActived}>{itemTime} WIB</Text>
+              ) : (
+                <Text style={styles.timeText}>{itemTime} WIB</Text>
+              )
+            ) : (
+              <Text style={styles.timeText}>{itemTime} WIB</Text>
+            )}
           </TouchableOpacity>
         ))}
       </View>
       <View style={styles.timeList}>
-        <TouchableOpacity style={styles.time}>
+        <TouchableOpacity style={styles.time} disabled={true}>
           <Text style={styles.timeText}>11:00 AM</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.time}>
@@ -72,11 +83,21 @@ export default function ScheduleCard(props) {
           <Text style={styles.priceText2}>Rp. {props.dataSchedule.price}</Text>
         </View>
       </View>
-      <TouchableOpacity
-        style={styles.cardButton}
-        onPress={() => props.handleOrder({dataOrder})}>
-        <Text style={styles.buttonText}>Book Now</Text>
-      </TouchableOpacity>
+      {props.dataSchedule.id === props.schedule ? (
+        <TouchableOpacity
+          style={styles.cardButton}
+          onPress={() => props.handleOrder({dataOrder})}
+          disabled={false}>
+          <Text style={styles.buttonText}>Book Now</Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          style={styles.cardButton2}
+          onPress={() => props.handleOrder({dataOrder})}
+          disabled={true}>
+          <Text style={styles.buttonText}>Book Now</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
@@ -117,6 +138,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#8692A6',
   },
+  timeTextActived: {
+    fontSize: 16,
+    color: '#5F2EEA',
+  },
   price: {
     marginTop: 20,
     flex: 1,
@@ -142,10 +167,18 @@ const styles = StyleSheet.create({
   },
   cardButton: {
     marginTop: 40,
-    padding: 10,
+    padding: 15,
     width: '100%',
     alignItems: 'center',
     backgroundColor: '#5F2EEA',
+    borderRadius: 10,
+  },
+  cardButton2: {
+    marginTop: 40,
+    padding: 15,
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: '#8692A6',
     borderRadius: 10,
   },
   buttonText: {

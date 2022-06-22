@@ -20,6 +20,13 @@ export default StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
   },
+  buttonDisable: {
+    marginVertical: 20,
+    padding: 15,
+    alignItems: 'center',
+    backgroundColor: '#8692A6',
+    borderRadius: 10,
+  },
   price: {
     marginTop: 20,
     flex: 1,
@@ -75,8 +82,8 @@ export default StyleSheet.create({
     color: '#8692A6',
   },
   cardButton: {
-    marginTop: 40,
-    padding: 10,
+    marginTop: 10,
+    padding: 15,
     width: '100%',
     alignItems: 'center',
     backgroundColor: '#5F2EEA',

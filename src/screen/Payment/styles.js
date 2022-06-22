@@ -70,7 +70,7 @@ export default StyleSheet.create({
   },
   cardButton: {
     marginTop: 40,
-    padding: 10,
+    padding: 15,
     width: '100%',
     alignItems: 'center',
     backgroundColor: '#5F2EEA',

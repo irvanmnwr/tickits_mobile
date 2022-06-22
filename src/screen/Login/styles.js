@@ -52,6 +52,13 @@ export default StyleSheet.create({
     backgroundColor: '#5F2EEA',
     borderRadius: 10,
   },
+  buttonDisable: {
+    marginVertical: 20,
+    padding: 15,
+    alignItems: 'center',
+    backgroundColor: '#8692A6',
+    borderRadius: 10,
+  },
   buttonText: {
     color: 'white',
     fontSize: 18,

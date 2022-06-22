@@ -17,6 +17,13 @@ export default StyleSheet.create({
     marginVertical: 10,
     paddingTop: 45,
   },
+  buttonDisable: {
+    marginVertical: 20,
+    padding: 15,
+    alignItems: 'center',
+    backgroundColor: '#8692A6',
+    borderRadius: 10,
+  },
   textLogin: {
     fontSize: 32,
     color: 'black',

@@ -19,7 +19,7 @@ function HomeScreen(props) {
   const dispatch = useDispatch();
   const limit = 8;
   const page = 1;
-  const [releaseDate, setReleaseDate] = useState('4');
+  const [releaseDate, setReleaseDate] = useState('');
   const [movieNow, setMovieNow] = useState([]);
   const month = [
     {number: 1, title: 'Januari'},
@@ -128,14 +128,23 @@ function HomeScreen(props) {
         </View>
         <View>
           <ScrollView horizontal={true}>
-            {month.map(item => (
-              <TouchableOpacity
-                style={styles.cardButton}
-                onPress={() => handleSortMonth(item)}
-                key={item.number}>
-                <Text style={styles.buttonText}>{item.title}</Text>
-              </TouchableOpacity>
-            ))}
+            {month.map(item =>
+              item.number === releaseDate ? (
+                <TouchableOpacity
+                  style={styles.cardButton2}
+                  onPress={() => handleSortMonth(item)}
+                  key={item.number}>
+                  <Text style={styles.buttonText2}>{item.title}</Text>
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  style={styles.cardButton}
+                  onPress={() => handleSortMonth(item)}
+                  key={item.number}>
+                  <Text style={styles.buttonText}>{item.title}</Text>
+                </TouchableOpacity>
+              ),
+            )}
           </ScrollView>
         </View>
         <View style={styles.cardContainer}>

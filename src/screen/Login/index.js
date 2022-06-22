@@ -14,7 +14,6 @@ function Login(props) {
   });
   const handleLogin = async () => {
     try {
-      console.log(form);
       const result = await axios.post('auth/login', form);
       await AsyncStorage.setItem('id', result.data.data.id);
       await AsyncStorage.setItem('token', result.data.data.token);
@@ -70,7 +69,17 @@ function Login(props) {
           style={styles.input}
           onChangeText={text => handleChangeForm(text, 'password')}
         />
-        <TouchableOpacity style={styles.buttonPrimary} onPress={handleLogin}>
+
+        <TouchableOpacity
+          style={
+            !form.email
+              ? styles.buttonDisable
+              : !form.password
+              ? styles.buttonDisable
+              : styles.buttonPrimary
+          }
+          onPress={handleLogin}
+          disabled={!form.email ? true : !form.password ? true : false}>
           <Text style={styles.buttonText}>Sign In</Text>
         </TouchableOpacity>
         <View style={styles.containerTextBottom}>

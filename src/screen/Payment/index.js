@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import axios from '../../utils/axios';
-import {WebView} from 'react-native-webview';
 import {
   View,
   Text,
@@ -10,9 +9,12 @@ import {
 } from 'react-native';
 import styles from './styles';
 import Footer from '../../components/Footer';
+import {useSelector} from 'react-redux';
 
 function PaymentScreen(props) {
+  const dataUser = useSelector(state => state.user.data.data.data[0]);
   const booking = props.route.params;
+  // eslint-disable-next-line no-unused-vars
   const [inputs, setInputs] = useState({
     scheduleId: booking.scheduleId,
     dateBooking: booking.dateBooking,
@@ -27,14 +29,6 @@ function PaymentScreen(props) {
       const resultPayment = await axios.post('booking/', inputs);
       const URL = resultPayment.data.data.redirectUrl;
       props.navigation.replace('Midtrands', {uri: URL});
-      // return (
-      //   <WebView
-      //     source={{
-      //       uri: resultPayment.data.data.redirectUrl,
-      //     }}
-      //     //   style={{marginTop: 20}}
-      //   />
-      // );
     } catch (error) {
       console.log(error.response);
     }
@@ -59,19 +53,19 @@ function PaymentScreen(props) {
         <View style={styles.scheduleCard}>
           <Text style={styles.detailLeft}>Name</Text>
           <TextInput
-            defaultValue="Jonar El Rodriguez"
+            defaultValue={dataUser.firstName}
             editable={false}
             style={styles.input}
           />
           <Text style={styles.detailLeft}>Email</Text>
           <TextInput
-            defaultValue="JonarRodri123@gmail.com"
+            defaultValue={dataUser.email}
             editable={false}
             style={styles.input}
           />
           <Text style={styles.detailLeft}>Phone Number</Text>
           <TextInput
-            defaultValue="0814456787121"
+            defaultValue={dataUser.noTelp}
             editable={false}
             style={styles.input}
           />
@@ -79,12 +73,6 @@ function PaymentScreen(props) {
         <TouchableOpacity style={styles.cardButton} onPress={handlePayment}>
           <Text style={styles.buttonText}>Pay Your Order</Text>
         </TouchableOpacity>
-        <WebView
-          source={{
-            uri: 'https://youtube.com',
-          }}
-          //   style={{marginTop: 20}}
-        />
       </View>
       <Footer />
     </ScrollView>
