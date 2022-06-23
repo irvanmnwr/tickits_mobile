@@ -21,6 +21,7 @@ function HomeScreen(props) {
   const page = 1;
   const [releaseDate, setReleaseDate] = useState('');
   const [movieNow, setMovieNow] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const month = [
     {number: 1, title: 'Januari'},
     {number: 2, title: 'Februari'},
@@ -69,15 +70,25 @@ function HomeScreen(props) {
   const getdataMovie = async () => {
     try {
       // PANGGIL ACTION
+      setRefresh(false);
       await dispatch(getDataMovie(page, limit, releaseDate));
     } catch (error) {
       console.log(error.response);
     }
   };
 
+  const handleRefresh = () => {
+    console.log('REFRESH SCREEN');
+    if (page !== 1) {
+      setRefresh(true);
+    } else {
+      getDataMovie();
+    }
+  };
+
   const movie = useSelector(state => state.movie);
   return (
-    <ScrollView>
+    <ScrollView onRefresh={handleRefresh} refreshing={refresh}>
       <View style={styles.container}>
         <View style={styles.containerTop}>
           <Text style={styles.paragrafHome}>Nearest Cinema, Newest Movie,</Text>
@@ -117,7 +128,7 @@ function HomeScreen(props) {
           </ScrollView>
         </View>
       </View>
-      <View style={styles.container}>
+      <View style={styles.container2}>
         <View style={styles.textContainer}>
           <View style={styles.flexParagraf}>
             <Text style={styles.textUpcoming}>Upcoming Movies</Text>

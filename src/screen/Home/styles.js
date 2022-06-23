@@ -32,7 +32,7 @@ export default StyleSheet.create({
     resizeMode: 'stretch',
   },
   containerMain: {
-    height: 610,
+    height: 'auto',
     padding: 20,
     backgroundColor: '#D6D8E7',
   },

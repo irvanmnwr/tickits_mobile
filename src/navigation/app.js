@@ -13,6 +13,8 @@ import Payment from '../screen/Payment';
 import Profile from '../screen/Profile';
 import History from '../screen/History';
 import Midtrands from '../screen/midtrans';
+import ViewAll from '../screen/ViewAll';
+import Notification from '../screen/Notification';
 
 import DrawerContent from '../components/DrawerContent';
 import Header from '../components/Header';
@@ -38,6 +40,11 @@ function HomeNavigator() {
       <Stack.Screen
         component={Payment}
         name="Payment"
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        component={Payment}
+        name="ViewAll"
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -91,6 +98,28 @@ export default function AppNavigator() {
           header: props => <Header {...props} />,
           drawerIcon: ({size, color}) => (
             <Icon name="user" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        component={ViewAll}
+        name="ViewAll"
+        options={{
+          title: 'ViewAll',
+          header: props => <Header {...props} />,
+          drawerIcon: ({size, color}) => (
+            <Icon name="list" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        component={Notification}
+        name="Notification"
+        options={{
+          title: 'Notification',
+          header: props => <Header {...props} />,
+          drawerIcon: ({size, color}) => (
+            <Icon name="bell" size={size} color={color} />
           ),
         }}
       />

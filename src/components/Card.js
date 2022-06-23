@@ -37,8 +37,8 @@ AppRegistry.registerComponent('Card', () => Card);
 const styles = StyleSheet.create({
   card: {
     backgroundColor: 'white',
-    width: 200,
-    marginHorizontal: 10,
+    width: 150,
+    marginHorizontal: 5,
     marginVertical: 20,
     borderRadius: 10,
     padding: 20,
@@ -47,23 +47,23 @@ const styles = StyleSheet.create({
     borderColor: '#DEDEDE',
   },
   cardImage: {
-    width: 160,
-    height: 300,
+    width: 110,
+    height: 200,
   },
   cardTitle: {
-    marginLeft: 8,
-    marginVertical: 10,
-    fontSize: 20,
+    marginLeft: 3,
+    marginVertical: 8,
+    fontSize: 18,
     color: 'black',
     fontWeight: 'bold',
   },
   cardGenre: {
-    marginLeft: 10,
-    fontSize: 18,
+    marginLeft: 3,
+    fontSize: 16,
     color: '#8692A6',
   },
   cardButton: {
-    marginTop: 40,
+    marginTop: 20,
     padding: 10,
     width: '100%',
     alignItems: 'center',
