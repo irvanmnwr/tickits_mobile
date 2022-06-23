@@ -15,6 +15,7 @@ import History from '../screen/History';
 import Midtrands from '../screen/midtrans';
 import ViewAll from '../screen/ViewAll';
 import Notification from '../screen/Notification';
+import Tickets from '../screen/Tickets';
 
 import DrawerContent from '../components/DrawerContent';
 import Header from '../components/Header';
@@ -43,7 +44,7 @@ function HomeNavigator() {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        component={Payment}
+        component={ViewAll}
         name="ViewAll"
         options={{headerShown: false}}
       />
@@ -66,6 +67,11 @@ function ProfileNavigator() {
       <Stack.Screen
         component={History}
         name="History"
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        component={Tickets}
+        name="Tickets"
         options={{headerShown: false}}
       />
     </Stack.Navigator>
@@ -105,7 +111,7 @@ export default function AppNavigator() {
         component={ViewAll}
         name="ViewAll"
         options={{
-          title: 'ViewAll',
+          title: 'Movie List',
           header: props => <Header {...props} />,
           drawerIcon: ({size, color}) => (
             <Icon name="list" size={size} color={color} />

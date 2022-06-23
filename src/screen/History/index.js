@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getDataBooking} from '../../stores/actions/booking';
-import {View, Text, ScrollView, TouchableOpacity, Image} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import Footer from '../../components/Footer';
+import HistoryCard from '../../components/HistoryCard';
 
 function History(props) {
   const dispatch = useDispatch();
@@ -31,6 +32,11 @@ function History(props) {
   const handleProfile = () => {
     props.navigation.navigate('Profile');
   };
+
+  const handleTickets = data => {
+    props.navigation.replace('Tickets', {id: data.id});
+  };
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -46,44 +52,12 @@ function History(props) {
         </View>
         {booking ? (
           booking.map(item => (
-            <View style={styles.scheduleCard2} key={item.id}>
-              <Text style={styles.detailLeft2} />
-              {item.premiere === 'ebu.Id' ? (
-                <Image
-                  style={styles.scheduleCardImage}
-                  source={require('../../assets/studio1.png')}
-                />
-              ) : item.premiere === 'CineOne' ? (
-                <Image
-                  style={styles.scheduleCardImage}
-                  source={require('../../assets/studio2.png')}
-                />
-              ) : (
-                <Image
-                  style={styles.scheduleCardImage}
-                  source={require('../../assets/studio3.png')}
-                />
-              )}
-              <Text style={styles.detailLeft2}>
-                {item.dateBooking.split('T')[0]} {item.timeBooking}
-              </Text>
-              <Text style={styles.cardTitle}>{item.name}</Text>
-              {item.statusUsed === '1' ? (
-                item.dateBooking < newDate ? (
-                  <TouchableOpacity style={styles.buttonDisable}>
-                    <Text style={styles.buttonText}>disable</Text>
-                  </TouchableOpacity>
-                ) : (
-                  <TouchableOpacity style={styles.cardButton}>
-                    <Text style={styles.buttonText}>enable</Text>
-                  </TouchableOpacity>
-                )
-              ) : (
-                <TouchableOpacity style={styles.buttonDisable}>
-                  <Text style={styles.buttonText}>disable</Text>
-                </TouchableOpacity>
-              )}
-            </View>
+            <HistoryCard
+              key={item.id}
+              dataBooking={item}
+              handleTickets={handleTickets}
+              newDate={newDate}
+            />
           ))
         ) : (
           <Text>loading</Text>

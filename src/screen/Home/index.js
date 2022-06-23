@@ -77,6 +77,10 @@ function HomeScreen(props) {
     }
   };
 
+  const handleMovieList = () => {
+    props.navigation.navigate('ViewAll');
+  };
+
   const handleRefresh = () => {
     console.log('REFRESH SCREEN');
     if (page !== 1) {
@@ -104,7 +108,7 @@ function HomeScreen(props) {
           <View style={styles.flexParagraf}>
             <Text style={styles.textMain}>Now Showing</Text>
           </View>
-          <TouchableOpacity style={styles.flexLink}>
+          <TouchableOpacity style={styles.flexLink} onPress={handleMovieList}>
             <Text style={styles.linkMain}>View all</Text>
           </TouchableOpacity>
         </View>
@@ -133,7 +137,7 @@ function HomeScreen(props) {
           <View style={styles.flexParagraf}>
             <Text style={styles.textUpcoming}>Upcoming Movies</Text>
           </View>
-          <TouchableOpacity style={styles.flexLink}>
+          <TouchableOpacity style={styles.flexLink} onPress={handleMovieList}>
             <Text style={styles.linkMain}>View all</Text>
           </TouchableOpacity>
         </View>
