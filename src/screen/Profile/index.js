@@ -10,17 +10,19 @@ import {
 import styles from './styles';
 import Footer from '../../components/Footer';
 import {useSelector, useDispatch} from 'react-redux';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {
   updateUser,
   getUserById,
   updatePassword,
 } from '../../stores/actions/user';
+// import axios from '../../utils/axios';
 import {CLOUDINARY} from '@env';
 
 function Profile(props) {
   const dispatch = useDispatch();
   const dataUser = useSelector(state => state.user.data.data.data[0]);
-
+  const [actived, setActived] = useState(false);
   const [formPassword, setFormPassword] = useState({
     oldPassword: '',
     newPassword: '',
@@ -56,6 +58,25 @@ function Profile(props) {
     }
   };
 
+  const handleActived = () => {
+    setActived(true);
+  };
+
+  const handleLaunchCamera = async options => {
+    // You can also use as a promise without 'callback':
+    const result = await launchCamera(options);
+    // await axios.get('user/updateimage', {image: result.assets[0].uri});
+    console.log(result.assets[0].uri);
+    setActived(false);
+  };
+
+  const handleLaunchLibrary = async () => {
+    // You can also use as a promise without 'callback':
+    const result = await launchImageLibrary();
+    console.log(result);
+    setActived(false);
+  };
+
   const getdataUser = async () => {
     try {
       // PANGGIL ACTION
@@ -76,6 +97,8 @@ function Profile(props) {
       console.log(error);
     }
   };
+
+  console.log(actived);
 
   const handleHistory = () => {
     props.navigation.navigate('History');
@@ -118,9 +141,34 @@ function Profile(props) {
             {dataUser.firstName} {dataUser.lastName}
           </Text>
           <Text style={styles.detailLeft2}>{dataUser.noTelp}</Text>
-          <TouchableOpacity style={styles.cardButton}>
-            <Text style={styles.buttonText}>Change Image</Text>
-          </TouchableOpacity>
+          {actived === false ? (
+            <TouchableOpacity style={styles.cardButton} onPress={handleActived}>
+              <Text style={styles.buttonText}>Change Image</Text>
+            </TouchableOpacity>
+          ) : (
+            <View style={styles.buttonCon}>
+              <TouchableOpacity
+                style={styles.cardButton}
+                onPress={() =>
+                  handleLaunchCamera({
+                    quality: 0.6,
+                    mediaType: 'photo',
+                  })
+                }>
+                <Text style={styles.buttonText}>Take Photo</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.cardButton}
+                onPress={() =>
+                  handleLaunchLibrary({
+                    quality: 0.6,
+                    mediaType: 'photo',
+                  })
+                }>
+                <Text style={styles.buttonText}>Open Library</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
         <Text style={styles.cardTitle}>Account Settings</Text>
         <View style={styles.scheduleCard}>

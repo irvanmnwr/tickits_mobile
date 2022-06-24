@@ -97,14 +97,18 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
     color: '#8692A6',
   },
+  buttonCon: {
+    flexDirection: 'row',
+  },
   cardButton: {
-    marginTop: 20,
+    marginVertical: 20,
     padding: 15,
     width: '100%',
     alignItems: 'center',
     backgroundColor: '#5F2EEA',
     borderRadius: 10,
-    marginBottom: 20,
+    marginHorizontal: 10,
+    flex: 1,
   },
   buttonText: {
     color: 'white',
