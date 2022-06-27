@@ -16,13 +16,16 @@ import {
   getUserById,
   updatePassword,
 } from '../../stores/actions/user';
-// import axios from '../../utils/axios';
+import axios from '../../utils/axios';
 import {CLOUDINARY} from '@env';
+import Icon from 'react-native-vector-icons/Feather';
 
 function Profile(props) {
   const dispatch = useDispatch();
   const dataUser = useSelector(state => state.user.data.data.data[0]);
   const [actived, setActived] = useState(false);
+  const [upload, setUpload] = useState(false);
+  const [image, setImage] = useState({});
   const [formPassword, setFormPassword] = useState({
     oldPassword: '',
     newPassword: '',
@@ -39,7 +42,7 @@ function Profile(props) {
   useEffect(() => {
     getdataUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [upload]);
 
   const handleChangePassword = async () => {
     try {
@@ -62,25 +65,77 @@ function Profile(props) {
     setActived(true);
   };
 
-  const handleLaunchCamera = async options => {
-    // You can also use as a promise without 'callback':
-    const result = await launchCamera(options);
-    // await axios.get('user/updateimage', {image: result.assets[0].uri});
-    console.log(result.assets[0].uri);
-    setActived(false);
+  const handleLaunchCamera = async () => {
+    try {
+      const options = {
+        quality: 0.2,
+        mediaType: 'photo',
+        cameraType: 'front',
+      };
+      // You can also use as a promise without 'callback':
+      const result = await launchCamera(options);
+      setImage(result.assets[0]);
+      console.log(result.assets[0]);
+      const data = new FormData();
+      data.append('image', {
+        uri: result.assets[0].uri,
+        type: result.assets[0].type,
+        name: result.assets[0].fileName,
+      });
+      const tes = await axios.patch('user/updateimage', data);
+      setUpload(true);
+      console.log(tes);
+      setActived(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleLaunchLibrary = async () => {
+  const handleLaunchLibrary = async options => {
+    try {
+      // You can also use as a promise without 'callback':
+      const result = await launchImageLibrary(options);
+      setImage(result.assets[0]);
+      const data = new FormData();
+      data.append('image', {
+        uri: result.assets[0].uri,
+        type: result.assets[0].type,
+        name: result.assets[0].fileName,
+      });
+      console.log(data);
+      const tes = await axios.patch('user/updateimage', data);
+      setUpload(true);
+      console.log(tes);
+      setActived(false);
+    } catch (error) {
+      console.log(error);
+    }
     // You can also use as a promise without 'callback':
-    const result = await launchImageLibrary();
-    console.log(result);
-    setActived(false);
+  };
+
+  const handleDeleteImage = async () => {
+    try {
+      const imageUrl = CLOUDINARY + 'Ticket-online-user/user_q1trqu.png';
+      const data = new FormData();
+      data.append('image', {
+        uri: imageUrl,
+        type: 'png',
+        name: 'userDefault',
+      });
+      console.log(data);
+      const tes = await axios.patch('user/updateimage', data);
+      console.log(tes);
+      // setUpload(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getdataUser = async () => {
     try {
       // PANGGIL ACTION
       await dispatch(getUserById(dataUser.id));
+      setUpload(false);
     } catch (error) {
       console.log(error.response);
     }
@@ -97,8 +152,6 @@ function Profile(props) {
       console.log(error);
     }
   };
-
-  console.log(actived);
 
   const handleHistory = () => {
     props.navigation.navigate('History');
@@ -149,23 +202,27 @@ function Profile(props) {
             <View style={styles.buttonCon}>
               <TouchableOpacity
                 style={styles.cardButton}
-                onPress={() =>
-                  handleLaunchCamera({
-                    quality: 0.6,
-                    mediaType: 'photo',
-                  })
-                }>
-                <Text style={styles.buttonText}>Take Photo</Text>
+                onPress={() => handleLaunchCamera()}>
+                <Text style={styles.buttonText}>
+                  <Icon color={'white'} size={50} name="camera" />
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.cardButton}
                 onPress={() =>
                   handleLaunchLibrary({
-                    quality: 0.6,
+                    quality: 0.3,
                     mediaType: 'photo',
                   })
                 }>
-                <Text style={styles.buttonText}>Open Library</Text>
+                <Text style={styles.buttonText}>
+                  <Icon color={'white'} size={50} name="image" />
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.cardButton}
+                onPress={() => handleDeleteImage()}>
+                <Icon color={'white'} size={50} name="trash" />
               </TouchableOpacity>
             </View>
           )}
