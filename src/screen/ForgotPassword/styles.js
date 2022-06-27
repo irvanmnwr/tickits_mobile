@@ -10,7 +10,7 @@ export default StyleSheet.create({
     // justifyContent: 'center',
   },
   image: {
-    width: 200,
+    width: 230,
     height: 50,
   },
   containerTextTop: {

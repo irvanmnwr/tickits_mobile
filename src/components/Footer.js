@@ -7,7 +7,7 @@ export default function Footer() {
     <View style={styles.footerContainer}>
       <Image
         style={styles.footerLogo}
-        source={require('../assets/Tickitz_logo.png')}
+        source={require('../assets/logo/logo2.png')}
       />
       <Text style={styles.footerText}>
         Stop waiting in line. Buy tickets conveniently, watch movies quietly.
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   footerLogo: {
-    width: 200,
+    width: 230,
     height: 50,
     marginVertical: 25,
   },

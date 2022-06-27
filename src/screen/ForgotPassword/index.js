@@ -26,7 +26,7 @@ function ForgotPassword(props) {
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={require('../../assets/Tickitz_logo.png')}
+        source={require('../../assets/logo/logo2.png')}
       />
       <View style={styles.containerTextTop}>
         <Text style={styles.textLogin}>Forgot Password</Text>

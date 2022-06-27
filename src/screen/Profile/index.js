@@ -86,6 +86,7 @@ function Profile(props) {
       setUpload(true);
       console.log(tes);
       setActived(false);
+      alert('succes Update Image');
     } catch (error) {
       console.log(error);
     }
@@ -107,6 +108,7 @@ function Profile(props) {
       setUpload(true);
       console.log(tes);
       setActived(false);
+      alert('succes Updated Image');
     } catch (error) {
       console.log(error);
     }

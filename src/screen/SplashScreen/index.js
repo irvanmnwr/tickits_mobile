@@ -19,14 +19,18 @@ function SplashScreen(props) {
       } else {
         props.navigation.replace('AuthScreen'); // sebelumnya props.navigation.navigate
       }
-    }, 5000);
+    }, 3000);
   };
 
   return (
     <View style={styles.container}>
       <Image
+        style={styles.splashImages}
+        source={require('../../assets/logo/logo.png')}
+      />
+      <Image
         style={styles.splashImage}
-        source={require('../../assets/Tickitz_logo.png')}
+        source={require('../../assets/logo/NONTON.png')}
       />
     </View>
   );
@@ -39,8 +43,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   splashImage: {
-    width: 200,
-    height: 50,
+    width: 160,
+    height: 27,
+    padding: 10,
+  },
+  splashImages: {
+    width: 120,
+    height: 120,
+    padding: 10,
+    marginBottom: 20,
   },
 });
 

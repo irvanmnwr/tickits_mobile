@@ -14,7 +14,7 @@ export default StyleSheet.create({
     paddingTop: 45,
   },
   image: {
-    width: 200,
+    width: 230,
     height: 50,
   },
   textLogin: {

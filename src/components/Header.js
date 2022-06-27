@@ -13,7 +13,7 @@ export default function Header(props) {
       <View>
         <Image
           style={styles.splashImage}
-          source={require('../assets/Tickitz_logo.png')}
+          source={require('../assets/logo/logo2.png')}
         />
       </View>
       <TouchableOpacity onPress={openDrawer}>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   splashImage: {
-    width: 160,
+    width: 180,
     height: 40,
   },
 });
