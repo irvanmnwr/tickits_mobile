@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, {useState, useEffect} from 'react';
 import {
   View,
@@ -25,7 +26,7 @@ function Profile(props) {
   const dataUser = useSelector(state => state.user.data.data.data[0]);
   const [actived, setActived] = useState(false);
   const [upload, setUpload] = useState(false);
-  const [image, setImage] = useState({});
+  // const [image, setImage] = useState({});
   const [formPassword, setFormPassword] = useState({
     oldPassword: '',
     newPassword: '',
@@ -53,7 +54,6 @@ function Profile(props) {
         newPassword: '',
         confirmPassword: '',
       });
-      // eslint-disable-next-line no-alert
       alert(result.action.payload.data.msg);
       props.navigation.navigate('Profile');
     } catch (error) {
@@ -74,7 +74,7 @@ function Profile(props) {
       };
       // You can also use as a promise without 'callback':
       const result = await launchCamera(options);
-      setImage(result.assets[0]);
+      // setImage(result.assets[0]);
       console.log(result.assets[0]);
       const data = new FormData();
       data.append('image', {
@@ -96,7 +96,7 @@ function Profile(props) {
     try {
       // You can also use as a promise without 'callback':
       const result = await launchImageLibrary(options);
-      setImage(result.assets[0]);
+      // setImage(result.assets[0]);
       const data = new FormData();
       data.append('image', {
         uri: result.assets[0].uri,
@@ -117,17 +117,12 @@ function Profile(props) {
 
   const handleDeleteImage = async () => {
     try {
-      const imageUrl = CLOUDINARY + 'Ticket-online-user/user_q1trqu.png';
-      const data = new FormData();
-      data.append('image', {
-        uri: imageUrl,
-        type: 'png',
-        name: 'userDefault',
-      });
-      console.log(data);
-      const tes = await axios.patch('user/updateimage', data);
-      console.log(tes);
-      // setUpload(true);
+      const form = {image: 'Ticket-online-user/user_q1trqu.png'};
+      const result = await dispatch(updateUser(form));
+      console.log(result);
+      setUpload(true);
+      setActived(false);
+      alert('succes Deleted Image');
     } catch (error) {
       console.log(error);
     }
@@ -148,7 +143,6 @@ function Profile(props) {
       const result = await dispatch(updateUser(formProfile));
       getdataUser();
       props.navigation.navigate('Profile');
-      // eslint-disable-next-line no-alert
       alert(result.action.payload.data.msg);
     } catch (error) {
       console.log(error);
