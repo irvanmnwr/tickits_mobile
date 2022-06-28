@@ -123,7 +123,7 @@
 
 ## **Deploy**
 
-### **Enjoy your journey with tickits_mobile** >> Download Link : [**tickits_mobile**](https://jobway.netlify.app/landing)
+### **Enjoy your journey with tickits_mobile** >> Download Link : [**tickits_mobile**](https://drive.google.com/file/d/1pydeV76Br6jNadm0bf7XyCHmaDRUc7km/view?usp=sharing)
 
 <br/>
-<hr/>                                                                                                      |                                                                                                                        |                                                                                                               |                                                                                                                  |                                                                                                                                                     |                                                                                                                            |
+<hr/>                                                                                                                                                                                                                               |
